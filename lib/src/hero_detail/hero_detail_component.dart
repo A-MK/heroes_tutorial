@@ -5,7 +5,7 @@ import '../hero.dart';
 
 @Component(
   selector: 'hero-detail',
-  templateUrl: 'hero_detail.html',
+  templateUrl: 'hero_detail_component.html',
   directives: [
     coreDirectives,
     formDirectives,

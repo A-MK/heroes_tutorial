@@ -1,7 +1,7 @@
 import 'package:angular/angular.dart';
 // import 'package:angular_forms/angular_forms.dart';
 import 'package:angular_components/angular_components.dart';
-import '../hero_detail/hero_detail.dart';
+import '../hero_detail/hero_detail_component.dart';
 
 import '../hero.dart';
 // import 'src/mock_heroes.dart';
@@ -12,8 +12,8 @@ import '../hero_service.dart';
 
 @Component(
   selector: 'heroes_list',
-  styleUrls: ['heroes_list.css'],
-  templateUrl: 'heroes_list.html',
+  styleUrls: ['heroes_list_component.css'],
+  templateUrl: 'heroes_list_component.html',
   directives: [
     coreDirectives,
     // formDirectives,

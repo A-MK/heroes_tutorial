@@ -1,2 +1,8 @@
 <h1>{{title}}</h1>
-<heroes_list></heroes_list>
+<nav>
+    <a 
+    [routerLink]="RoutePaths.heroes.toUrl()"
+    [routerLinkActive]="'active'"
+    >Heroes</a>
+</nav>
+<router-outlet [routes]="Routes.all"></router-outlet>
