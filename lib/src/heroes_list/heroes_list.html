@@ -1,0 +1,13 @@
+
+<h2>Heroes</h2>
+<material-spinner *ngIf="heroes == null"></material-spinner>
+<ul class="heroes">
+    <li *ngFor="let hero of heroes" 
+    (click)="onSelect(hero)"
+    [class.selected]="selected === hero">
+    <!-- or like this:  [ngClass]="{'selected':selected === hero}" -->
+    
+        <span class="badge">{{hero.id}}</span> {{hero.name}}
+    </li>
+</ul>
+<hero-detail [hero]="selected"></hero-detail>
