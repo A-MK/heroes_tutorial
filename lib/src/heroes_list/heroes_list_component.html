@@ -10,4 +10,10 @@
         <span class="badge">{{hero.id}}</span> {{hero.name}}
     </li>
 </ul>
-<hero-detail [hero]="selected"></hero-detail>
+<div *ngIf="selected != null">
+    <h2>
+      {{selected.name | uppercase}} is my hero
+    </h2>
+    <button (click)="gotoDetail()">View Details</button>
+  </div>
+  

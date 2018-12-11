@@ -1,6 +1,16 @@
 import 'package:angular_router/angular_router.dart';
+
+const idParam = 'id';
+
 class RoutePaths {
 static final heroes = RoutePath(path: 'heroes');
 static final dashboard = RoutePath(path: 'dashboard');
-static final home = RoutePath(path: '');
+static final hero = RoutePath(path: '${heroes.path}/:$idParam');
+
+}
+
+int getId(Map<String,String> params){
+
+  final id = params[idParam];
+  return id == null ? null : int.tryParse(id);
 }
