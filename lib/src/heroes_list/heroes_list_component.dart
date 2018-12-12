@@ -38,7 +38,8 @@ class HeroesListComponent implements OnInit{
     this._getHeroes();
   }
   
-  Future<NavigationResult> gotoDetail() {
-    return this._router.navigate(RoutePaths.hero.toUrl(parameters: {idParam : selected.id.toString()}));
-  }
+  Future<NavigationResult> gotoDetail() => this._router.navigate(
+    RoutePaths.hero.toUrl(parameters: {idParam : selected.id.toString()})
+    );
+  
 }
