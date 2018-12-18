@@ -3,13 +3,23 @@
 <material-spinner *ngIf="heroes == null"></material-spinner>
 <ul class="heroes">
     <li *ngFor="let hero of heroes" 
-    (click)="onSelect(hero)"
+    
     [class.selected]="selected === hero">
     <!-- or like this:  [ngClass]="{'selected':selected === hero}" -->
-    
+      <span (click)="onSelect(hero)">
         <span class="badge">{{hero.id}}</span> {{hero.name}}
+      </span>
+        <button class="remove" (click)="removeHero(hero)" >remove</button>
     </li>
 </ul>
+<button *ngIf="!showNewHeroInput" (click)="showNewHeroInput = true">Add new Hero</button>
+<div *ngIf="showNewHeroInput">
+  <label>name:</label>
+  <input type="text" (keyup.enter)="addHero(newHeroName.value)" #newHeroName>
+  <br>
+  <button (click)="showNewHeroInput = false" >Cancel</button>
+  <button (click)="addHero(newHeroName.value)">Save</button>
+</div>
 <div *ngIf="selected != null">
     <h2>
       {{selected.name | uppercase}} is my hero

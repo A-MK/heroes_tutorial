@@ -24,7 +24,7 @@ class DashboardComponent implements OnInit{
   }
 
   Future<void> _getHeroes() async{
-    this.heroes = (await this.heroService.getAll()).skip(1).take(4).toList();
+    this.heroes = (await this.heroService.store.state.heroes).skip(1).take(4).toList();
   }
   String heroUrl(int id) => RoutePaths.hero.toUrl(parameters: {idParam : '$id'});
 }

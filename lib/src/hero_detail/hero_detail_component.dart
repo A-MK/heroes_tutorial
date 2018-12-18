@@ -6,7 +6,7 @@ import '../hero_service.dart';
 import '../hero.dart';
 
 import '../route_paths.dart';
-
+import '../redux/actions.dart';
 @Component(
   selector: 'hero-detail',
   templateUrl: 'hero_detail_component.html',
@@ -26,10 +26,19 @@ class HeroDetailComponent implements OnActivate {
   @override
   void onActivate(RouterState previous, RouterState current) async {
     final id = getId(current.parameters);
-    if (id != null) this.hero = await this._heroService.getHeroById(id); 
+    if (id != null) {
+      this.hero = this._heroService.store.state.heroes.firstWhere((hero) => (hero.id == id));
+      this._heroService.store.onChange.listen((state) {
+      this.hero = state.heroes.firstWhere((hero) => (hero.id == id)); 
+    });
+    } 
   }
 
   void goBack() {
     this._location.back();
+  }
+
+  void saveHero(String newName) {
+    this._heroService.store.dispatch(UpdateHeroAction(this.hero, newName));
   }
 }

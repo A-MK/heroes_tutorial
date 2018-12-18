@@ -61,4 +61,8 @@
     color: #ccc;
     cursor: auto;
   }
-  
+  .remove {
+    margin: 0;
+    align-self: center;
+    float: right;
+  }

@@ -4,7 +4,7 @@ import 'package:angular_router/angular_router.dart';
 import '../route_paths.dart';
 import '../hero.dart';
 import '../hero_service.dart';
-
+import '../redux/actions.dart';
 
 @Component(
   selector: 'heroes_list',
@@ -17,6 +17,7 @@ import '../hero_service.dart';
   pipes: [commonPipes],
 )
 class HeroesListComponent implements OnInit{
+  bool showNewHeroInput = false;
   Hero selected;
   Router _router;
   final HeroService _heroService;
@@ -30,16 +31,29 @@ class HeroesListComponent implements OnInit{
   }
 
   Future<void> _getHeroes() async {
-    this.heroes = await this._heroService.getAll();
+    this.heroes = await this._heroService.store.state.heroes;
   }
 
   @override
   void ngOnInit() {
     this._getHeroes();
+    this._heroService.store.onChange.listen(
+      (state) {
+        this.heroes = state.heroes;
+        });
   }
   
   Future<NavigationResult> gotoDetail() => this._router.navigate(
     RoutePaths.hero.toUrl(parameters: {idParam : selected.id.toString()})
     );
+
+    removeHero(Hero hero) {
+      this._heroService.store.dispatch(RemoveHeroAction(hero));
+    }
+
+    addHero(String name) {
+      this._heroService.store.dispatch(AddHeroAction(name));
+      showNewHeroInput = false;
+    }
   
 }
